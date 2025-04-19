@@ -1,14 +1,7 @@
-# Python Virtual Environment
-/.venv
-
-# Python cache
+.venv/
 __pycache__/
-
-# VS Code settings
 .vscode/
-
-# Next.js build output
-/.next
-
-# Node modules
+.next/
 /node_modules
+.DS_Store
+.idea/
