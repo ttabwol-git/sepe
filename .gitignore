@@ -1,0 +1,14 @@
+# Python Virtual Environment
+/.venv
+
+# Python cache
+__pycache__/
+
+# VS Code settings
+.vscode/
+
+# Next.js build output
+/.next
+
+# Node modules
+/node_modules
