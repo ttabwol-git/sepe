@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+.logoIndigoTint {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(70%) saturate(1352%)
+    hue-rotate(216deg) brightness(90%) contrast(92%);
+}
