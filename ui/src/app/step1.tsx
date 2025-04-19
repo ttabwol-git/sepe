@@ -37,7 +37,7 @@ export default function Step1({
       }
     };
     fetchData();
-  }, []);
+  }, [postals.length]);
 
   const handlePostalChange = (postal: Postal) => setSelectedPostal(postal);
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -63,7 +63,7 @@ export default function Step1({
     } finally {
       setIsSubmitting(false);
     }
-  }, [selectedPostal, selectedEmail]);
+  }, [selectedPostal, selectedEmail, setCurrentStep, setSubscriptionToken]);
 
   const isDisabled = !selectedEmail || !selectedPostal || isSubmitting;
 
