@@ -137,3 +137,6 @@ The project does not currently have unit tests. The plan is to implement unit te
 
 ### 7.3. Splitting the Backend
 Both the engine that runs the subscriptions on the background and the API are asynchronously executed in the same process. If this were to be deployed in high-demand production environment, the engine should be separated from the API. This would ensure that only one engine is running and subscriptions are reused while keeping the API elastic and responsive. This will be implemented in the future.
+
+### 7.4. Database
+The project does not currently have a database. The plan is to implement a database to store the subscriptions and postal codes. This will be implemented in the future.
