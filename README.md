@@ -83,6 +83,10 @@ You can generate a random secret key from [here](https://fernetkeygen.com/).
 
 For more details, refer to the [API documentation](http://localhost:8000/docs) after starting the application.
 
+### 4.5. Linting and Formatting
+The project uses [Black](https://black.readthedocs.io/en/stable/) for code formatting [Ruff](https://docs.astral.sh/ruff/) for linting.
+
+
 ## 5. Frontend - UI
 ### 5.1. File Structure
 ```
@@ -113,6 +117,9 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 - **Next.js**: React framework.
 - **Tailwind CSS**: CSS framework.
 - **Catalyst**: UI component library.
+
+## 5.4. Linting and Formatting
+The project uses [Prettier](https://prettier.io/) for code formatting and [ESLint](https://eslint.org/) for linting.
 
 ## 6. Next Challenges
 
