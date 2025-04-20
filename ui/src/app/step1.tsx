@@ -18,8 +18,8 @@ export default function Step1({
   setCurrentStep: (step: number) => void;
   setSubscriptionToken: (token: string) => void;
 }) {
-  type Postal = { code: string };
-  type SubscriptionResponse = { validation_token: string };
+  interface Postal { code: string };
+  interface SubscriptionResponse { validation_token: string };
   const [postals, setPostals] = useState<Postal[]>([]);
   const [selectedPostal, setSelectedPostal] = useState<Postal | null>(null);
   const [selectedEmail, setSelectedEmail] = useState("");
@@ -29,7 +29,7 @@ export default function Step1({
     const fetchData = async () => {
       if (postals.length > 0) return; // Avoid fetching if already fetched
       try {
-        const data = await fetchPostals();
+        const data: Array<Postal> = await fetchPostals();
         setPostals(data);
         setSelectedPostal(null); // Let the user choose manually
       } catch (err) {
