@@ -13,6 +13,7 @@ This project has been developed by **Xabi Moreno** <xabi.moreno.maya@gmail.com>.
 ## 1. File Structure
 ```
 project-root/
+├── .github/                 # GitHub actions
 ├── app/                     # Backend application (Python – FastAPI)
 ├── ui/                      # Frontend application (Next.js – React)
 ├── README.md                # Project documentation
@@ -121,13 +122,18 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 ## 5.4. Linting and Formatting
 The project uses [Prettier](https://prettier.io/) for code formatting and [ESLint](https://eslint.org/) for linting.
 
-## 6. Next Challenges
+## 6. CD/CI
+The project uses GitHub Actions for continuous integration and deployment. The workflow is defined in the `.github/workflows/build.yml` file. The workflow runs on every push to the `main` branch and performs the following steps:
+- Build the Docker images for the backend and frontend applications.
+- Push the images to repository.
 
-### 6.1. SMTP Client
+## 7. Next Challenges
+
+### 7.1. SMTP Client
 The SMTP client is not yet implemented. By the moment, token validations are done using a simple GET request and the API is currently exposing the token. The plan is to implement a third party email system to send emails and notifications. This will be implemented in the future.
 
-### 6.2. Unit Tests
+### 7.2. Unit Tests
 The project does not currently have unit tests. The plan is to implement unit tests for the backend and frontend applications. This will be implemented in the future.
 
-### 6.3. Splitting the Backend
+### 7.3. Splitting the Backend
 Both the engine that runs the subscriptions on the background and the API are asynchronously executed in the same process. If this were to be deployed in high-demand production environment, the engine should be separated from the API. This would ensure that only one engine is running and subscriptions are reused while keeping the API elastic and responsive. This will be implemented in the future.
