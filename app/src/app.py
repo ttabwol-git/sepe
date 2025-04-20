@@ -27,7 +27,7 @@ load_dotenv()
 
 class App:
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.logger = Logger().logger
         self.version = __version__
         self.secret_key = os.getenv("SECRET_KEY")
@@ -44,7 +44,7 @@ class App:
         self.logger.info(f"App started - v{__version__}")
 
     @staticmethod
-    def set_ssl_context():
+    def set_ssl_context() -> ssl.SSLContext:
         """
         Sets the SSL context for the HTTP requests.
         """
@@ -53,7 +53,7 @@ class App:
         ssl_context.verify_mode = ssl.CERT_NONE
         return ssl_context
 
-    async def expire_queue(self):
+    async def expire_queue(self) -> None:
         """
         Expires the queue every minute.
         """
@@ -68,7 +68,7 @@ class App:
                 self.logger.info(f"Queue id {random_id} - Expired")
             await asyncio.sleep(60)
 
-    async def send_request(self, postal_code):
+    async def send_request(self, postal_code) -> None:
         """
         Sends a request to the given endpoint every 10 seconds.
         Each instance of this coroutine handles its own timing.
@@ -122,7 +122,7 @@ class App:
                 await asyncio.sleep(1)
 
     @staticmethod
-    async def process_response(response: dict):
+    async def process_response(response: dict) -> list[dict]:
         """
         Processes the response from the endpoint.
         """
@@ -132,7 +132,7 @@ class App:
                 available_offices.append(Office(**office))
         return available_offices
 
-    async def send_email(self, subscribers: list, offices: list, postal_code: str):
+    async def send_email(self, subscribers: list, offices: list, postal_code: str) -> None:
         """
         Sends an email to the subscribers with the available offices.
         """
@@ -148,7 +148,7 @@ class App:
         )
         self.logger.debug(f"Message: {msg.get_content()}")
 
-    async def decrypt_token(self, token: str):
+    async def decrypt_token(self, token: str) -> tuple[str, str, str]:
         """
         Decrypts a token.
         """
@@ -162,7 +162,7 @@ class App:
             raise HTTPException(status_code=400, detail="Invalid token")
         return subscription_id, postal_code, user_email
 
-    async def queue_subscription(self, postal_code: str, user_email: str):
+    async def queue_subscription(self, postal_code: str, user_email: str) -> JSONResponse:
         """
         Queues a user to subscribe to a task.
         """
@@ -201,7 +201,7 @@ class App:
             },
         )
 
-    async def validate_subscription(self, token: str):
+    async def validate_subscription(self, token: str) -> JSONResponse:
         """
         Validates a user subscription.
         """
@@ -222,7 +222,7 @@ class App:
             },
         )
 
-    async def subscribe(self, postal_code: str, user_email: str, token: str):
+    async def subscribe(self, postal_code: str, user_email: str, token: str) -> JSONResponse:
         """
         Subscribes a user to an existing task.
         """
@@ -254,7 +254,7 @@ class App:
             },
         )
 
-    async def remove_subscription(self, token: str):
+    async def remove_subscription(self, token: str) -> JSONResponse:
         """
         Removes a user subscription.
         """
@@ -287,7 +287,7 @@ class App:
             },
         )
 
-    async def create_task(self, postal_code: str):
+    async def create_task(self, postal_code: str) -> None:
         """
         Creates a new task for the given postal code.
         """
@@ -299,7 +299,7 @@ class App:
         self.tasks[postal_code] = task
         self.logger.info(f"Task {task['task_id']} - Postal {postal_code} - Started")
 
-    async def validate_postal_code(self, postal_code: str):
+    async def validate_postal_code(self, postal_code: str) -> str:
         """
         Validates the postal code.
         """
