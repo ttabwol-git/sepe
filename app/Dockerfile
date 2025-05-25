@@ -1,10 +1,10 @@
 # Build stage
-FROM python:3.12.0-slim AS builder
+FROM python:3.13.3-slim AS builder
 WORKDIR /app
 COPY . .
 
 # Runtime stage
-FROM python:3.12.0-slim
+FROM python:3.13.3-slim
 WORKDIR /app
 COPY --from=builder /app/pyproject.toml /app/poetry.lock* ./
 RUN pip install poetry==2.1.2
